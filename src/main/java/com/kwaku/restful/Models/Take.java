@@ -10,42 +10,40 @@ public class Take {
 
     }
 
-    public Take Interstellar = new Take("Interstellar", "S", "Awesome");
-
     public Take(String filmName, String rating, String notes) {
         this.filmName = filmName;
         this.filmRating = rating;
         this.filmNotes = notes;
     }
 
-    public String getfilmName() {
+    public String getTakeName() {
         return filmName;
     }
 
-    public String getfilmRating() {
+    public String getTakeRating() {
         return filmRating;
     }
 
-    public String getfilmNotes() {
+    public String getTakeNotes() {
         return filmNotes;
     }
 
-    public void setFilmName(String filmName) {
+    public void setTakeName(String filmName) {
         this.filmName = filmName;
     }
 
-    public void setFilmRating(String filmRating) {
+    public void setTakeRating(String filmRating) {
         this.filmRating = filmRating;
         System.out.printf("Film's rating has been changed to %S. \n\n", filmRating);
     }
 
-    public void setFilmNotes(String filmNotes) {
+    public void setTakeNotes(String filmNotes) {
         this.filmNotes = filmNotes;
         System.out.print("Your notes on this film have been updated");
     }
 
     public String listInfo() {
-        String output = getfilmName() + ", " + getfilmRating() + ", " + getfilmNotes();
+        String output = getTakeName() + ", " + getTakeRating() + ", " + getTakeNotes();
         return output;
     }
 }

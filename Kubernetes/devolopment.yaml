@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: restful
+  labels:
+    app: restful
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: restful-app
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: restful-app
+    spec:
+      containers:
+        - name: restful
+          image: kwaagyei/restful:v1.0.2
+          imagePullPolicy: Always
+          ports: 
+            - containerPort: 8080
