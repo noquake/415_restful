@@ -21,6 +21,9 @@ jobs:
         distribution: 'temurin'
         java-version: '11' # Adjust the Java version as needed
     
+    - name: Build JAR file
+      run: ./gradlew build
+      
     - name: Build the container image
       run: docker build . -t my-restful-service
       
