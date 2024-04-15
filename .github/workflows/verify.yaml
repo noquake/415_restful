@@ -16,29 +16,32 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Setup Java
-        uses: actions/setup-java@v2
-        with:
-          distribution: 'temurin'
-          java-version: '21'
+      uses: actions/setup-java@v2
+      with:
+        distribution: 'temurin'
+        java-version: '11' # Adjust the Java version as needed
     
+    - name: Build JAR file
+      run: ./gradlew build
+      
     - name: Build the container image
       run: docker image build . -t my-restful-service
       
     - name: Run the container
       run: docker run -d -p 8123:8123 my-restful-service
       
+    - name: Wait for the container to start up
+      run: sleep 5
+      
     - name: Test the RESTful service
       run: |
-        # Wait for the container to start up
-        sleep 5
-        
         # Send a GET request to the service
-        response=$(curl localhost:31234/fib?length=18)
+        response=$(curl localhost:8123/fib?length=18)
         
-        # Check that the response is "Hello world."
-        if [ "$response" == "Hello world!" ]; then
+        # Check the response
+        if [ "$response" == "<expected_response>" ]; then
           echo "Test passed!"
         else
-          echo "Test failed. Expected 'Hello world.', got '$response'"
+          echo "Test failed. Expected '<expected_response>', got '$response'"
           exit 1
         fi
