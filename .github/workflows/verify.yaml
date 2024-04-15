@@ -35,16 +35,13 @@ jobs:
       
     - name: Test the RESTful service
       run: |
-        # Wait for the container to start up
-        sleep 5
-        
         # Send a GET request to the service
-        response=$(curl http://localhost:8123)
+        response=$(curl localhost:8080/fib?length=3)
         
-        # Check that the response is "Hello world."
-        if [ "$response" == "Hello world!" ]; then
+        # Check the response
+        if [ "$response" == "[0, 1, 1]"; then
           echo "Test passed!"
         else
-          echo "Test failed. Expected 'Hello world.', got '$response'"
+          echo "Test failed. Expected '<expected_response>', got '$response'"
           exit 1
         fi
