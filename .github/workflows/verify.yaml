@@ -12,7 +12,14 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+
     - uses: actions/checkout@v2
+
+    - name: Setup Java
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'temurin'
+          java-version: '21'
     
     - name: Build the container image
       run: docker build . -t my-restful-service
@@ -26,7 +33,7 @@ jobs:
         sleep 5
         
         # Send a GET request to the service
-        response=$(curl http://localhost:8123)
+        response=$(curl localhost:31234/fib?length=18)
         
         # Check that the response is "Hello world."
         if [ "$response" == "Hello world!" ]; then
