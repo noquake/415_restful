@@ -39,7 +39,7 @@ jobs:
         response=$(curl localhost:8080/fib?length=3)
         
         # Check the response
-        if [ "$response" == "[0,1,1]"; then
+        if [ "$response" == "[0,1,1]" ]; then
           echo "Test passed!"
         else
           echo "Test failed. Expected '<expected_response>', got '$response'"
